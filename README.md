@@ -222,7 +222,7 @@ See examples in [API_DOCUMENTATION.md](API_DOCUMENTATION.md)
    MAIL_ENCRYPTION=tls
    ```
 
-5. **Optimize application**
+5. **Optimize application Only After Setup**
    ```bash
    composer install --optimize-autoloader --no-dev
    php artisan config:cache
