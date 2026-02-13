@@ -74,11 +74,6 @@ A complete event booking system built with Laravel 12, featuring role-based acce
 
 4. **Configure database**
 
-   For SQLite (default):
-   ```bash
-   touch database/database.sqlite
-   ```
-
    For MySQL, update `.env`:
    ```
    DB_CONNECTION=mysql
