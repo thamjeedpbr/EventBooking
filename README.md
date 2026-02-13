@@ -126,98 +126,6 @@ After seeding, use these credentials:
 | Organizer | organizer@example.com     | password |
 | Customer  | customer@example.com      | password |
 
-## Project Structure
-
-```
-app/
-├── Http/
-│   ├── Controllers/
-│   │   └── Api/
-│   │       ├── AuthController.php
-│   │       ├── EventController.php
-│   │       ├── TicketController.php
-│   │       ├── BookingController.php
-│   │       └── PaymentController.php
-│   ├── Middleware/
-│   │   ├── CheckRole.php
-│   │   └── PreventDoubleBooking.php
-│   └── Requests/
-│       ├── RegisterRequest.php
-│       ├── LoginRequest.php
-│       ├── StoreEventRequest.php
-│       ├── UpdateEventRequest.php
-│       ├── StoreTicketRequest.php
-│       ├── UpdateTicketRequest.php
-│       ├── StoreBookingRequest.php
-│       └── ProcessPaymentRequest.php
-├── Models/
-│   ├── User.php
-│   ├── Event.php
-│   ├── Ticket.php
-│   ├── Booking.php
-│   └── Payment.php
-├── Notifications/
-│   └── BookingConfirmedNotification.php
-├── Services/
-│   ├── EventService.php
-│   ├── TicketService.php
-│   ├── BookingService.php
-│   └── PaymentService.php
-└── Traits/
-    ├── ApiResponse.php
-    └── CommonQueryScopes.php
-
-database/
-├── factories/
-│   ├── UserFactory.php
-│   ├── EventFactory.php
-│   ├── TicketFactory.php
-│   ├── BookingFactory.php
-│   └── PaymentFactory.php
-├── migrations/
-│   ├── xxxx_create_users_table.php
-│   ├── xxxx_modify_users_table_add_role_and_phone.php
-│   ├── xxxx_create_events_table.php
-│   ├── xxxx_create_tickets_table.php
-│   ├── xxxx_create_bookings_table.php
-│   ├── xxxx_create_payments_table.php
-│   └── xxxx_create_personal_access_tokens_table.php
-└── seeders/
-    └── DatabaseSeeder.php
-
-routes/
-├── api.php
-└── web.php
-```
-
-## API Endpoints
-
-### Public Endpoints
-- `POST /api/register` - Register new user
-- `POST /api/login` - Login user
-- `GET /api/events` - List all events
-- `GET /api/events/{id}` - Get event details
-
-### Protected Endpoints (require authentication)
-- `POST /api/logout` - Logout user
-- `GET /api/me` - Get authenticated user
-
-### Organizer Endpoints
-- `POST /api/events` - Create event
-- `PUT /api/events/{id}` - Update event
-- `DELETE /api/events/{id}` - Delete event
-- `POST /api/tickets` - Create ticket
-- `PUT /api/tickets/{id}` - Update ticket
-- `DELETE /api/tickets/{id}` - Delete ticket
-
-### Customer Endpoints
-- `POST /api/bookings` - Create booking
-- `GET /api/bookings` - Get user bookings
-- `POST /api/bookings/{id}/cancel` - Cancel booking
-- `POST /api/payments/process` - Process payment
-- `GET /api/payments/{id}` - Get payment details
-
-For detailed API documentation, see [API_DOCUMENTATION.md](API_DOCUMENTATION.md)
 
 ## Key Features Implementation
 
@@ -247,6 +155,26 @@ Email notifications are queued to prevent blocking the main application flow.
 
 ## Testing
 
+### Automated Tests
+
+The project includes a comprehensive test s covering all major functionality.
+
+#### Running Tests
+
+```bash
+# Run all tests
+php artisan test
+
+# Run specific test suite
+php artisan test --testsuite=Feature
+php artisan test --testsuite=Unit
+
+# Run specific test file
+php artisan test tests/Feature/AuthenticationTest.php
+php artisan test tests/Unit/PaymentServiceTest.php
+
+```
+
 ### Manual Testing
 1. Use the test accounts to login
 2. Test each role's permissions
@@ -254,7 +182,7 @@ Email notifications are queued to prevent blocking the main application flow.
 4. Process payments and verify status
 
 ### Using Postman
-Import the API endpoints and test all functionality with different user roles.
+Import the `Event_Booking_System.postman_collection.json` file and test all functionality with different user roles.
 
 ### Using cURL
 See examples in [API_DOCUMENTATION.md](API_DOCUMENTATION.md)
